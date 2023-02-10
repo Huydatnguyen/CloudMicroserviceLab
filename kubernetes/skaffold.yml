@@ -1,0 +1,21 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: huydatnguyen/cloud/gateway
+      context: ../gateway
+      jib: {}
+    - image: huydatnguyen/cloud/invoice
+      context: ../invoice
+      jib: {}
+    - image: huydatnguyen/cloud/notification
+      context: ../notification
+      jib: {}
+    - image: huydatnguyen/cloud/productorder
+      context: ../productorder
+      jib: {}
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest"
+deploy:
+  kustomize: {}
